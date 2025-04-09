@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { order, verifyPayment } from '../api/apiService'
-import { EmailModal, PopUp } from './popUp'
+import { EmailModal, PopUp } from './PopUp'
 import { registration, enroll_course } from "../api/Auth";
 
 const PricingSection = () => {
