@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import tutorimg from '../assets/Screenshot 2024-10-16 at 4.13.30 PM.png'
+import tutorimg from '../assets/Mentor Image.png'
 import signature from '../assets/sign.png'
 
 gsap.registerPlugin(ScrollTrigger);
@@ -51,12 +51,12 @@ const FounderCard: React.FC = () => {
 
             {/* Name */}
             <h2 className="text-2xl md:text-3xl font-bold text-white">
-              DJ Brown
+              Sachin Rao
             </h2>
 
             {/* Designation */}
             <p className="text-base md:text-lg text-gray-400">
-              CEO and Founder, Stock Dads
+              CEO and Founder, 10x traders
             </p>
 
             {/* Catchy Line */}

@@ -14,17 +14,17 @@ import Footer from './component/Footer'
 const App: React.FC = () => {
   return (
     <>
-    <Navbar/>
-    <HeroSection/>
-    <FounderCard/>
-    <BenefitCards/>
-    <Testimonial />
-    <PricingSection />
-    <Results/>
-    <Faq/>
-    <SlidingTestimonial/>
-    <Action/>
-    <Footer/>
+      <Navbar />
+      <HeroSection />
+      <FounderCard />
+      <BenefitCards />
+      <Testimonial />
+      <PricingSection />
+      <Results />
+      <Faq />
+      <SlidingTestimonial />
+      <Action />
+      <Footer />
 
 
     </>
