@@ -1,12 +1,40 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { order, verifyPayment } from '../api/apiService'
-// import { loadScript } from "./utils";
+import { EmailModal, PopUp } from './popUp'
+import { registration, enroll_course } from "../api/Auth";
 
 const PricingSection = () => {
+  const [paymentStatus, setPaymentStatus] = useState<number | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<{ id: string; price: number }>({
     id: "3monthly",
     price: 49
   });
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [userDetails, setUserDetails] = useState<{ name: string; email: string; password: string; mobile: string } | null>(null);
+
+  useEffect(() => {
+    if (paymentStatus === 200) {
+      console.log("yahi aya k verify karega");
+
+      enroll_course(
+        userDetails?.name ?? "",
+        userDetails?.email ?? "",
+        userDetails?.password ?? "",
+        userDetails?.password ?? "",
+        selectedPlan.id,
+        "67e37133dce10d69e30769e9"
+      ).then(() => {
+        // Redirect the user after enrollment is successful
+        window.location.href = "https://sachin4803.graphy.com/s/authenticate";
+      }).catch((error) => {
+        console.error("Error in enrollment:", error);
+      });
+    } else if (paymentStatus !== null) {
+      console.log("Enroll nahi ho raha");
+    }
+  }, [paymentStatus]);
+
 
 
   const pricingPlans = [
@@ -53,27 +81,22 @@ const PricingSection = () => {
     },
   ];
 
-  const handle_checkout = (data: any) => {
-    console.log("--->", data)
+  const handle_checkout = async (data: any) => {
     const options = {
       key: import.meta.env.VITE_APP_RAZORPAY_KEY_ID,  // Your Razorpay Key
       amount: data.amount,  // Amount in paise
       currency: data.currency,
       name: "Your Company Name",
       description: "Payment for Premium Plan",
-      order_id: data.id,  // Razorpay Order ID from backend
-      // handler: async function (response: any) {
-      //     console.log("Payment Success:----------->>>>>", response);
-      //     alert("Payment Successful!");
-      //     // 🎯 Step 2: Verify Payment with Backend
-      //     await verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature);
-      // },
+      order_id: data.id,
       handler: async function (response: any) {
         try {
-          alert("Payment Successful!");
-
+          console.log('--->', response)
           // ✅ Awaiting ensures proper error handling
-          await verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature);
+
+          const return_val = await verifyPayment(response.razorpay_order_id, response.razorpay_payment_id, response.razorpay_signature);
+          setPaymentStatus(return_val ?? null)
+
         } catch (error) {
           console.error("Error in payment verification:", error);
         }
@@ -87,23 +110,52 @@ const PricingSection = () => {
       theme: { color: "#3399cc" }
     };
 
+    setShowPaymentModal(false)
+
     const paymentObject = new (window as any).Razorpay(options);
     paymentObject.open();
+  }
+
+
+  const handleUserDetailsSubmit = async (user: { name: string; email: string; password: string; mobile: string }) => {
+    setUserDetails(user);
+    setShowEmailModal(false);
+    try {
+      await registration(user.email, user.password)
+      setShowPaymentModal(true)
+    } catch (error) {
+      console.log('error in registration user', error)
+    }
 
   }
 
-  const handlePlanSelection = async (planId: string, planPrice: number) => {
-    setSelectedPlan({ id: planId, price: planPrice });
-    console.log(`Selected Plan: ${planId}, Price: ${planPrice}`);
+  const handlePayment = async () => {
     try {
-      const order_data = await order(planPrice)
-      // console.log("Order Created:", order_data);
+      const order_data = await order(selectedPlan.price)
+      console.log("Order Created:", order_data);
       handle_checkout(order_data)
 
 
     } catch (error) {
       console.error("Error creating order:", error);
     }
+  }
+
+  const handleClose = () => {
+    setShowPaymentModal(false)
+    console.log("thiis is payment vala ")
+  }
+
+
+  const handleCrypto = () => {
+    console.log("find out way to integrate the crypto")
+  }
+
+
+  const handlePlanSelection = async (planId: string, planPrice: number) => {
+    setSelectedPlan({ id: planId, price: planPrice });
+    setShowEmailModal(true);
+    console.log(`Selected Plan: ${planId}, Price: ${planPrice}`);
   };
 
   return (
@@ -163,8 +215,12 @@ const PricingSection = () => {
           </div>
         ))}
       </div>
+      {showEmailModal && <EmailModal onClose={handleUserDetailsSubmit} />}
+      {showPaymentModal && <PopUp onPay={handlePayment} onClose={handleClose} onPayCrypto={handleCrypto} />}
     </div>
   );
 };
 
 export default PricingSection;
+
+
