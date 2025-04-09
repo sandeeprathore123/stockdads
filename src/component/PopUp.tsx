@@ -4,63 +4,63 @@ import { X, CreditCard, Bitcoin } from "lucide-react";
 // ------------------
 // Type Definitions
 // ------------------
-type Plan = {
-    id: number;
-    packageId: string;
-    name: string;
-    price: string;
-    duration: string;
-    discount?: string;
-    features: { id: number; title: string }[];
-};
+// type Plan = {
+//     id: number;
+//     packageId: string;
+//     name: string;
+//     price: string;
+//     duration: string;
+//     discount?: string;
+//     features: { id: number; title: string }[];
+// };
 
 // ------------------
 // Plan Data
 // ------------------
-const plans: { [key: string]: Plan } = {
-    Monthly: {
-        id: 1,
-        packageId: '67d0f24cf36fe343f46e38b0',
-        name: "Dad Pro",
-        price: "$99.99",
-        duration: "monthly",
-        features: [
-            { id: 1, title: "Live Trading Sessions" },
-            { id: 2, title: "Real-Time Entries & Exits" },
-            { id: 3, title: "24/7 Coaching & Support" },
-        ],
-    },
-    quaterly: {
-        id: 2,
-        packageId: '67d0f38526d3e260f4954d91',
-        name: "Dad Advance",
-        price: "$249.99",
-        duration: "quaterly",
-        discount: "15% Off",
-        features: [
-            { id: 1, title: "Live Trading Sessions" },
-            { id: 2, title: "Real-Time Entries & Exits" },
-            { id: 3, title: "24/7 Coaching & Support" },
-            { id: 4, title: "Market Updates & Analysis" },
-        ],
-    },
-    Yearly: {
-        id: 3,
-        packageId: '67d0f39f3fe6546230097f9e',
-        name: "Dad Bundle",
-        price: "$1,500.00",
-        duration: "yearly",
-        discount: "42% Off",
-        features: [
-            { id: 1, title: "Live Trading Sessions" },
-            { id: 2, title: "Real-Time Entries & Exits" },
-            { id: 3, title: "24/7 Coaching & Support" },
-            { id: 4, title: "Market Updates & Analysis" },
-            { id: 5, title: "VIP Discord Access" },
-            { id: 6, title: "Educational Resources" },
-        ],
-    },
-};
+// const plans: { [key: string]: Plan } = {
+//     Monthly: {
+//         id: 1,
+//         packageId: '67d0f24cf36fe343f46e38b0',
+//         name: "Dad Pro",
+//         price: "$99.99",
+//         duration: "monthly",
+//         features: [
+//             { id: 1, title: "Live Trading Sessions" },
+//             { id: 2, title: "Real-Time Entries & Exits" },
+//             { id: 3, title: "24/7 Coaching & Support" },
+//         ],
+//     },
+//     quaterly: {
+//         id: 2,
+//         packageId: '67d0f38526d3e260f4954d91',
+//         name: "Dad Advance",
+//         price: "$249.99",
+//         duration: "quaterly",
+//         discount: "15% Off",
+//         features: [
+//             { id: 1, title: "Live Trading Sessions" },
+//             { id: 2, title: "Real-Time Entries & Exits" },
+//             { id: 3, title: "24/7 Coaching & Support" },
+//             { id: 4, title: "Market Updates & Analysis" },
+//         ],
+//     },
+//     Yearly: {
+//         id: 3,
+//         packageId: '67d0f39f3fe6546230097f9e',
+//         name: "Dad Bundle",
+//         price: "$1,500.00",
+//         duration: "yearly",
+//         discount: "42% Off",
+//         features: [
+//             { id: 1, title: "Live Trading Sessions" },
+//             { id: 2, title: "Real-Time Entries & Exits" },
+//             { id: 3, title: "24/7 Coaching & Support" },
+//             { id: 4, title: "Market Updates & Analysis" },
+//             { id: 5, title: "VIP Discord Access" },
+//             { id: 6, title: "Educational Resources" },
+//         ],
+//     },
+// };
 
 // ------------------
 // Email Modal (Collects full user details)
