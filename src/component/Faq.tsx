@@ -3,24 +3,24 @@ import { motion } from "framer-motion"; // Smooth animations
 
 const FAQs = [
   {
-    question: "What's included in the alerts?",
-    answer: "Our alerts include trade signals, entry/exit points, and market insights.",
+    question: "What’s included in the trade ideas?",
+    answer: "Detailed setups with entry points, stop losses, and profit targets—everything you need to trade confidently.",
   },
   {
-    question: "Do your analysts make all of the trades they alert to members?",
+    question: "Do your analysts trade what they share?",
     answer: "Yes, our analysts trade alongside our members to ensure transparency.",
   },
   {
-    question: "How many alerts can I expect per day?",
-    answer: "You can expect between 3-5 high-quality trade alerts per day.",
+    question: "How many trade ideas can I expect daily?",
+    answer: "3–5 high-quality ideas across forex and Indian stocks, depending on market conditions.",
   },
   {
-    question: "I don’t know anything about Discord or trading. Will this be over my head?",
-    answer: "No worries! We provide beginner-friendly guides and support.",
+    question: "I’m new to trading—will this be too advanced?",
+    answer: "Not at all! Our Academy starts with the basics, and our community supports you every step of the way.",
   },
   {
-    question: "What is your refund/cancellation policy?",
-    answer: "We offer a no-questions-asked refund policy within the first 7 days.",
+    question: "What’s your refund policy?",
+    answer: "14-day money-back guarantee—If loss occurred & backtesting on our master strategy.",
   },
 ];
 
@@ -34,7 +34,7 @@ const Faq: React.FC = () => {
   return (
     <div className="bg-black text-white py-20 px-6 md:px-20">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
-        
+
         {/* LEFT CONTAINER */}
         <div className="md:w-1/3">
           <h2 className="text-5xl font-bold mb-4">Got Questions?</h2>
@@ -95,8 +95,8 @@ const Faq: React.FC = () => {
         </div>
       </div>
 
-   
-    
+
+
     </div>
   );
 };

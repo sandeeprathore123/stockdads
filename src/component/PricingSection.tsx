@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { order, verifyPayment } from '../api/apiService'
 import { EmailModal, PopUp } from './PopUp'
 import { registration, enroll_course } from "../api/Auth";
+import { crypto_payment } from '../api/Crypto'
 
 const PricingSection = () => {
   const [paymentStatus, setPaymentStatus] = useState<number | null>(null);
@@ -42,13 +43,13 @@ const PricingSection = () => {
       id: "monthly",
       price: "$49.99",
       duration: "/ month",
-      name: "Cadet",
+      name: "MasterPath",
       features: [
-        "✅ Access to all TRW Campuses",
-        "✅ Daily live broadcasts",
-        "✅ Daily course updates",
-        "✅ Beginner-friendly mentorship",
-        "✅ Priority email support",
+        "✅ Master Trading Strategy – Delivered in 3 days",
+        "✅ Consistent Income Opportunity",
+        "✅ Lifetime Support & Updates",
+        "✅ Access to Private Trading Community",
+        "✅ 100% Refund Policy– If the strategy is proven non-profitable through genuine",
       ],
     },
     {
@@ -146,9 +147,17 @@ const PricingSection = () => {
     console.log("thiis is payment vala ")
   }
 
+  const handle_crypto_checkout = (open_url: string) => {
+    window.open(open_url, "_blank");
+  };
 
-  const handleCrypto = () => {
-    console.log("find out way to integrate the crypto")
+
+  const handleCrypto = async () => {
+    const crypto_order = await crypto_payment(selectedPlan.price, "USD")
+    const url = crypto_order?.data?.url
+    handle_crypto_checkout(url)
+    setShowPaymentModal(false)
+
   }
 
 

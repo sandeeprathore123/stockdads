@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const testimonials = [
-  { user: "countgabu", profilePic: "https://randomuser.me/api/portraits/men/32.jpg", timeAgo: "13 days ago", message: "Shout out to the amazing Customer service team at Stock Dad's for helping me with my payment issue..." },
-  { user: "casperclous", profilePic: "https://randomuser.me/api/portraits/men/33.jpg", timeAgo: "22 days ago", message: "I have been here for 3 months, it has been a great place, good callers..." },
-  { user: "flynn_37250", profilePic: "https://randomuser.me/api/portraits/men/34.jpg", timeAgo: "2 months ago", message: "This is a place to be for serious traders. Daddy’s home. When you wanna go ahead with selling options strategies..." },
+  { user: "Ravi K., Mumbai", profilePic: "https://randomuser.me/api/portraits/men/32.jpg", timeAgo: "13 days ago", message: "I went from losing money in forex to making consistent profits in 3 months, thanks to SR Global Trading Academy’ live sessions!" },
+  { user: "Priya S., Delhi", profilePic: "https://randomuser.me/api/portraits/men/33.jpg", timeAgo: "22 days ago", message: "The Academy broke down complex stock strategies into simple steps. Now I trade NSE stocks like a pro." },
+  { user: "Amit P., Bangalore", profilePic: "https://randomuser.me/api/portraits/men/34.jpg", timeAgo: "2 months ago", message: "The community is a game-changer—real traders helping each other succeed" },
   { user: "litty2739", profilePic: "https://randomuser.me/api/portraits/men/35.jpg", timeAgo: "2 months ago", message: "Great set of traders here! From experienced scalpers to reliable swing traders..." },
-    { user: "countgabu", profilePic: "https://randomuser.me/api/portraits/men/32.jpg", timeAgo: "13 days ago", message: "Shout out to the amazing Customer service team at Stock Dad's for helping me with my payment issue..." },
+  { user: "countgabu", profilePic: "https://randomuser.me/api/portraits/men/32.jpg", timeAgo: "13 days ago", message: "Shout out to the amazing Customer service team at Stock Dad's for helping me with my payment issue..." },
   { user: "casperclous", profilePic: "https://randomuser.me/api/portraits/men/33.jpg", timeAgo: "22 days ago", message: "I have been here for 3 months, it has been a great place, good callers..." },
   { user: "flynn_37250", profilePic: "https://randomuser.me/api/portraits/men/34.jpg", timeAgo: "2 months ago", message: "This is a place to be for serious traders. Daddy’s home. When you wanna go ahead with selling options strategies..." },
   { user: "litty2739", profilePic: "https://randomuser.me/api/portraits/men/35.jpg", timeAgo: "2 months ago", message: "Great set of traders here! From experienced scalpers to reliable swing traders..." },
 ];
 
 const SlidingTestimonial: React.FC = () => {
-   const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(1);
   const [translateValue, setTranslateValue] = useState(16); // Default for desktop
   // const [itemsPerView, setItemsPerView] = useState(3); // Default: Show 3 cards in desktop
 
@@ -61,14 +61,14 @@ const SlidingTestimonial: React.FC = () => {
           >
             {testimonials.map((item, index) => (
               <div key={index} className="flex-shrink-0 w-[350px] px-10"
-              >  
+              >
                 <div className={`relative p-4 w-[340px] h-[420px] rounded-xl overflow-hidden transition-all ${activeIndex === index ? "bg-[#181818] shadow-xl" : "bg-[#0F0F0F] opacity-50"}`}>
-                  
+
                   {/* User Message */}
                   <p className={`p-3 rounded-lg text-sm ${activeIndex === index ? "bg-[#22C55E] text-black" : "text-gray-400"}`}>
                     {item.message}
                   </p>
-                  
+
                   {/* Brand Reply */}
                   <div className="mt-4">
                     <p className="text-sm text-gray-400">Stock Dads</p>
