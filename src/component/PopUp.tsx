@@ -72,7 +72,12 @@ interface EmailModalProps {
 
 
 export const EmailModal: React.FC<EmailModalProps> = ({ onClose }) => {
-    const [user, setUser] = useState({ name: "", email: "", password: "", mobile: "" });
+    const [user, setUser] = useState({
+        name: "Gyanesh",
+        email: "gyanesh198@gmail.com",
+        password: "12345678",
+        mobile: "9453449939",
+    });
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 z-50">

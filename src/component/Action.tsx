@@ -1,7 +1,15 @@
 import React from "react";
 import { FaCheck, FaChartLine, FaUserGraduate, FaDiscord, FaClipboardList } from "react-icons/fa";
 
-const Action: React.FC = () => {
+interface action {
+  scroll_to_price: React.RefObject<HTMLDivElement>
+}
+
+const Action: React.FC<action> = ({ scroll_to_price }) => {
+  const handleclick = () => {
+    scroll_to_price.current?.scrollIntoView({ behavior: "smooth" });
+
+  }
   return (
     <div className="bg-black text-white py-24 px-6">
       {/* Section Header */}
@@ -103,7 +111,7 @@ const Action: React.FC = () => {
           </ul>
 
           {/* CTA Button */}
-          <button className="mt-6 w-full py-3 px-4 rounded-lg border border-[#22C55E] text-[#22C55E] font-bold shadow-lg hover:bg-[#22C55E] hover:text-white transition">
+          <button onClick={handleclick} className="mt-6 w-full py-3 px-4 rounded-lg border border-[#22C55E] text-[#22C55E] font-bold shadow-lg hover:bg-[#22C55E] hover:text-white transition">
             Join the 1%
           </button>
         </div>

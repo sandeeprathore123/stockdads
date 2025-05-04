@@ -1,55 +1,63 @@
 import React from "react";
 import BelowHero from "./BelowHero";
 
+interface herosection {
+  scroll_to_price: React.RefObject<HTMLDivElement>
+}
 
-const HeroSection: React.FC = () => {
+
+const HeroSection: React.FC<herosection> = ({ scroll_to_price }) => {
+  const handleclick = () => {
+    scroll_to_price.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
-   <>
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center text-center px-4 md:px-8">
-      {/* Main Heading */}
-      <h1 className="mt-20 text-4xl md:text-6xl font-bold text-white leading-snug">
-        99% of traders fail. <br />
-        Unlock the secrets of the 1%.
-      </h1>
+    <>
+      <div className="bg-black min-h-screen flex flex-col items-center justify-center text-center px-4 md:px-8">
+        {/* Main Heading */}
+        <h1 className="mt-20 text-4xl md:text-6xl font-bold text-white leading-snug">
+          Why 99% Traders Lose  <br />
+          Crack the Code of the Elite 1%!
+        </h1>
 
-      {/* Subtext */}
-      <p className="mt-4 text-gray-400 text-lg md:text-xl">
-        Trade with our exclusive professional analysts.
-      </p>
+        {/* Subtext */}
+        <p className="mt-4 text-gray-400 text-lg md:text-xl">
+          Trade with our exclusive professional analysts.
+        </p>
 
-      {/* Features */}
-      <div className="mt-8 flex flex-wrap justify-center gap-6">
-        {/* Feature Card 1 */}
-        <div className="flex items-center pl-4 pr-6 py-2 bg-gray-800 text-white rounded-full shadow-md">
-          <span className="mr-2 w-4 h-4 bg-[#00ae54] rounded-full" /> {/* Placeholder for SVG */}
-          <span className="text-sm font-medium">Daily live trading</span>
+        {/* Features */}
+        <div className="mt-8 flex flex-wrap justify-center gap-6">
+          {/* Feature Card 1 */}
+          <div className="flex items-center pl-4 pr-6 py-2 bg-gray-800 text-white rounded-full shadow-md">
+            <span className="mr-2 w-4 h-4 bg-[#00ae54] rounded-full" /> {/* Placeholder for SVG */}
+            <span className="text-sm font-medium">Daily live trading</span>
+          </div>
+
+          {/* Feature Card 2 */}
+          <div className="flex items-center pl-4 pr-6 py-2 bg-gray-800 text-white rounded-full shadow-md">
+            <span className="mr-2 w-4 h-4 bg-[#00ae54] rounded-full" /> {/* Placeholder for SVG */}
+            <span className="text-sm font-medium">Trade alerts</span>
+          </div>
+
+          {/* Feature Card 3 */}
+          <div className="flex items-center pl-4 pr-6 py-2 bg-gray-800 text-white rounded-full shadow-md">
+            <span className="mr-2 w-4 h-4 bg-[#00ae54] rounded-full" /> {/* Placeholder for SVG */}
+            <span className="text-sm font-medium">Mentorship</span>
+          </div>
         </div>
 
-        {/* Feature Card 2 */}
-        <div className="flex items-center pl-4 pr-6 py-2 bg-gray-800 text-white rounded-full shadow-md">
-          <span className="mr-2 w-4 h-4 bg-[#00ae54] rounded-full" /> {/* Placeholder for SVG */}
-          <span className="text-sm font-medium">Trade alerts</span>
+        {/* Call-to-Action Button */}
+        <button onClick={handleclick} className="mt-10 px-16 py-3 rounded-full text-[#fff] border-2 border-[#ffffff] hover:border-[#00ae54] hover:text-[#00ae54] transition-all duration-300">
+          Join the 1%
+        </button>
+
+        <div className="mt-20 w-full">
+          <BelowHero />
         </div>
 
-        {/* Feature Card 3 */}
-        <div className="flex items-center pl-4 pr-6 py-2 bg-gray-800 text-white rounded-full shadow-md">
-          <span className="mr-2 w-4 h-4 bg-[#00ae54] rounded-full" /> {/* Placeholder for SVG */}
-          <span className="text-sm font-medium">Mentorship</span>
-        </div>
       </div>
 
-      {/* Call-to-Action Button */}
-      <button className="mt-10 px-16 py-3 rounded-full text-[#fff] border-2 border-[#ffffff] hover:border-[#00ae54] hover:text-[#00ae54] transition-all duration-300">
-        Join the 1%
-      </button>
-    
-    <div className="mt-20 w-full">
-        <BelowHero/>
-    </div>
-      
-    </div>
-    
-   </>
+    </>
   );
 };
 

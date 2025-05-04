@@ -5,9 +5,16 @@ import tutorimg from '../assets/Mentor Image.png'
 import signature from '../assets/sign.png'
 
 gsap.registerPlugin(ScrollTrigger);
+interface foundercard {
+  scroll_to_price: React.RefObject<HTMLDivElement>
+}
 
-const FounderCard: React.FC = () => {
+const FounderCard: React.FC<foundercard> = ({ scroll_to_price }) => {
   const paragraphRefs = useRef<HTMLParagraphElement[]>([]); // Array of paragraph refs
+
+  const handleclick = () => {
+    scroll_to_price.current?.scrollIntoView({ behavior: "smooth" });
+  }
 
   useEffect(() => {
     // GSAP Scroll Animation for paragraphs
@@ -56,12 +63,12 @@ const FounderCard: React.FC = () => {
 
             {/* Designation */}
             <p className="text-base md:text-lg text-gray-400">
-              CEO and Founder, 10x traders
+              CEO and Founder, GTA
             </p>
 
             {/* Catchy Line */}
             <p className="italic text-sm md:text-base text-white">
-              "It was either this or OnlyFans"
+              Start your trading Today
             </p>
 
             {/* Signature */}
@@ -81,36 +88,29 @@ const FounderCard: React.FC = () => {
               className="text-white text-base md:text-lg mb-4"
               ref={(el) => el && paragraphRefs.current.push(el)}
             >
-              I was just a regular dad with no financial background, searching
-              everywhere for trustworthy resources to teach me how to make money
-              in the stock market.
+              Hey, I’m Sachin – I’ve spent the last 6+ years mastering the art of trading in Indian and Forex markets, and I’m here to share what I’ve learned.
             </p>
             <p
               className="text-white text-base md:text-lg mb-4"
               ref={(el) => el && paragraphRefs.current.push(el)}
             >
-              I couldn't find what I was looking for, so I built it myself, and
-              called it Stock Dads.
+              Over the years, I’ve successfully cleared multiple prop firm challenges, proving my strategies in real-time, high-stakes environments.
             </p>
             <p
               className="text-white text-base md:text-lg mb-4"
               ref={(el) => el && paragraphRefs.current.push(el)}
             >
-              I assembled a world-class team of 13 exclusive analysts — each part
-              of the 1% club of consistently profitable traders (for years, with
-              verifiable proof) — to share their expertise with me, and anyone
-              else that wanted to join me.
+              I specialize in simplifying the complexities of trading and investing, sharing practical, actionable insights that help people navigate the financial world with confidence.
             </p>
             <p
               className="text-white text-base md:text-lg mb-4"
               ref={(el) => el && paragraphRefs.current.push(el)}
             >
-              Now, thousands of traders have the resource that I was searching
-              for.
+              Whether it's breaking down market trends, trading psychology, or smart investment strategies — I’m here to make finance easy to understand and accessible to everyone who wants to grow their wealth the right way.
             </p>
 
             {/* Call-to-Action Button */}
-            <button className="mt-6 px-6 py-2 bg-[#00ae54] text-sm md:text-base text-black font-medium rounded-full hover:bg-green-600 transition-all self-baseline">
+            <button onClick={handleclick} className="mt-6 px-6 py-2 bg-[#00ae54] text-sm md:text-base text-black font-medium rounded-full hover:bg-green-600 transition-all self-baseline">
               Join the 1%
             </button>
           </div>

@@ -9,16 +9,47 @@ const people = [
   { name: "Michael Brown", img: "https://randomuser.me/api/portraits/men/5.jpg" },
 ];
 
-const Footer: React.FC = () => {
+interface footer_type {
+  move_to_founder: React.RefObject<HTMLDivElement>
+  scroll_to_price: React.RefObject<HTMLDivElement>
+  scroll_to_benifit: React.RefObject<HTMLDivElement>
+  scroll_to_faq: React.RefObject<HTMLDivElement>
+  scroll_to_review: React.RefObject<HTMLDivElement>
+}
+
+const Footer: React.FC<footer_type> = ({ move_to_founder, scroll_to_price, scroll_to_benifit, scroll_to_faq, scroll_to_review }) => {
+
+  const scrolltofaq = () => {
+    scroll_to_faq.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const founder_click = () => {
+    move_to_founder.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const pricing_click = () => {
+    scroll_to_price.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const scrolltobenifit = () => {
+    scroll_to_benifit.current?.scrollIntoView({ behavior: "smooth" });
+
+  }
+  const scrolltoreview = () => {
+    scroll_to_review.current?.scrollIntoView({ behavior: "smooth" });
+
+  }
+
+
   return (
     <div className="bg-black text-white py-16 px-6">
       {/* Footer Top Content */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-        
+
         {/* Newsletter Subscription */}
         <div className="border border-[#22C55E] rounded-lg bg-[#0F0F0F] p-6 shadow-lg">
           <h2 className="text-3xl font-bold text-white mb-4">STOCK<span className="text-[#22C55E]">DADS</span></h2>
-          
+
           {/* Social Icons */}
           <div className="flex space-x-4 mb-4">
             <FaDiscord className="text-white text-xl cursor-pointer" />
@@ -27,7 +58,7 @@ const Footer: React.FC = () => {
             <FaTwitter className="text-white text-xl cursor-pointer" />
             <FaTiktok className="text-white text-xl cursor-pointer" />
           </div>
-          
+
           <p className="text-gray-400 text-sm mb-4">
             Get the DADvantage Daily Market Newsletter, Priority Updates on Free Events, and more.
           </p>
@@ -49,9 +80,13 @@ const Footer: React.FC = () => {
         {/* About Section */}
         <div className="text-end">
           <h3 className="text-lg font-bold text-white mb-3">ABOUT</h3>
-          <ul className="text-gray-400 space-y-2">
-            <li className="hover:text-[#22C55E] cursor-pointer">Founder</li>
-            <li className="hover:text-[#22C55E] cursor-pointer">Reviews</li>
+          <ul className="text-gray-400 space-y-2 flex flex-col items-end">
+            <li>
+              <button onClick={founder_click} className="hover:text-[#22C55E] cursor-pointer">Founder</button>
+            </li>
+            <li>
+              <button onClick={scrolltoreview} className="hover:text-[#22C55E] cursor-pointer">Review</button>
+            </li>
             <li className="hover:text-[#22C55E] cursor-pointer">Contact Us</li>
           </ul>
         </div>
@@ -59,10 +94,16 @@ const Footer: React.FC = () => {
         {/* Links Section */}
         <div >
           <h3 className="text-lg font-bold text-white mb-3">LINKS</h3>
-          <ul className="text-gray-400 space-y-2">
-            <li className="hover:text-[#22C55E] cursor-pointer">Benefits</li>
-            <li className="hover:text-[#22C55E] cursor-pointer">Pricing</li>
-            <li className="hover:text-[#22C55E] cursor-pointer">FAQs</li>
+          <ul className="text-gray-400 space-y-2 flex flex-col">
+            <li>
+              <button onClick={scrolltobenifit} className="hover:text-[#22C55E] cursor-pointer">Benefit</button>
+            </li>
+            <li>
+              <button onClick={pricing_click} className="hover:text-[#22C55E] cursor-pointer">Pricing</button>
+            </li>
+            <li>
+              <button onClick={scrolltofaq} className="hover:text-[#22C55E] cursor-pointer">Faq</button>
+            </li>
           </ul>
         </div>
       </div>
@@ -87,17 +128,17 @@ const Footer: React.FC = () => {
 
       {/* Footer Bottom Navigation */}
       <div className="text-center text-gray-500 text-sm mt-8 space-x-6">
-        <a href="#" className="hover:text-white transition">Terms & Conditions</a>
-        <a href="#" className="hover:text-white transition">Privacy Policy</a>
-        <a href="#" className="hover:text-white transition">Return Policy</a>
+        <a href="https://docs.google.com/document/d/1ucghZpraxAeCHiEoBg8H8s6BxSnhscvC3NDRGCRJr7w/edit?usp=sharing" className="hover:text-white transition">Terms & Conditions</a>
+        <a href="https://docs.google.com/document/d/1W1KU5YRToulPd83abPbCTyz26K2EQYa3LqezCsKiHE4/edit?usp=sharing" className="hover:text-white transition">Privacy Policy</a>
+        <a href="https://docs.google.com/document/d/1rBF3HIQyZWMbMvPHUukH-ebgXL9Mpplzq-mZJG7VZGo/edit?usp=sharing" className="hover:text-white transition">Return Policy</a>
       </div>
 
       {/* Copyright */}
       <p className="text-center text-gray-500 text-sm mt-4">
-        © 2024 Stock Dads. All Rights Reserved.
+        © Gloabal Trading Academy. All Rights Reserved.
       </p>
     </div>
   );
 };
 
-export default Footer;
+export default Footer

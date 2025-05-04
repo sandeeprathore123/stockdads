@@ -2,8 +2,8 @@ import axios from "axios";
 
 // Enroll user to graphy 
 
-export const registration = async (email:string , password:string ) =>{
-  const response = await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}enrollUser/register`, {email, password})
+export const registration = async (email:string, name:string, password:string, mobile:string, productId:string) =>{
+  const response = await axios.post(`${import.meta.env.VITE_APP_API_BASE_URL}enrollUser/register`, {email, name, password, mobile, productId})
   console.log("====>response from register =======>",response)
 }
 
