@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { order, verifyPayment } from '../api/apiService'
 import { EmailModal, PopUp } from './PopUp'
-import { registration, enroll_course } from "../api/Auth";
-import { crypto_payment } from '../api/Crypto'
+import { registration } from "../api/Auth";
+import {crypto_payment, is_payment_done} from '../api/Crypto'
 
 const PricingSection = () => {
   const [paymentStatus, setPaymentStatus] = useState<number | null>(null);
@@ -14,27 +14,40 @@ const PricingSection = () => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [userDetails, setUserDetails] = useState<{ name: string; email: string; password: string; mobile: string } | null>(null);
 
-  useEffect(() => {
-    if (paymentStatus === 200) {
-      console.log("yahi aya k verify karega");
+  // useEffect(() => {
+  //   if (paymentStatus === 200) {
+  //     console.log("yahi aya k verify karega");
+  //
+  //     enroll_course(
+  //       userDetails?.name ?? "",
+  //       userDetails?.email ?? "",
+  //       userDetails?.password ?? "",
+  //       userDetails?.password ?? "",
+  //       selectedPlan.id,
+  //       "67e37133dce10d69e30769e9"
+  //     ).then(() => {
+  //       // Redirect the user after enrollment is successful
+  //       window.location.href = "https://sachin4803.graphy.com/s/authenticate";
+  //     }).catch((error) => {
+  //       console.error("Error in enrollment:", error);
+  //     });
+  //   } else if (paymentStatus !== null) {
+  //     console.log("Enroll nahi ho raha");
+  //   }
+  // }, [paymentStatus]);
 
-      enroll_course(
-        userDetails?.name ?? "",
-        userDetails?.email ?? "",
-        userDetails?.password ?? "",
-        userDetails?.password ?? "",
-        selectedPlan.id,
-        "67e37133dce10d69e30769e9"
-      ).then(() => {
-        // Redirect the user after enrollment is successful
-        window.location.href = "https://sachin4803.graphy.com/s/authenticate";
-      }).catch((error) => {
-        console.error("Error in enrollment:", error);
-      });
-    } else if (paymentStatus !== null) {
-      console.log("Enroll nahi ho raha");
-    }
-  }, [paymentStatus]);
+  useEffect(() => {
+    if (!userDetails?.email) return;
+
+    const intervalId = setInterval(async () => {
+      const payment_done = await is_payment_done(userDetails.email);
+      if (payment_done) {
+        window.location.href = 'https://graphy.com/us/';
+      }
+    }, 15000); // 15 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, [userDetails?.email]);
 
 
 
@@ -122,7 +135,7 @@ const PricingSection = () => {
     setUserDetails(user);
     setShowEmailModal(false);
     try {
-      await registration(user.email, user.password)
+      await registration(user.email, user.name, user.password, user.mobile, selectedPlan.id)
       setShowPaymentModal(true)
     } catch (error) {
       console.log('error in registration user', error)
@@ -153,7 +166,7 @@ const PricingSection = () => {
 
 
   const handleCrypto = async () => {
-    const crypto_order = await crypto_payment(selectedPlan.price, "USD")
+    const crypto_order = await crypto_payment(userDetails?.email || '', selectedPlan.price, "USD")
     const url = crypto_order?.data?.url
     handle_crypto_checkout(url)
     setShowPaymentModal(false)
